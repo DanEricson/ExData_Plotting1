@@ -1,8 +1,8 @@
-#Set working directory for text file
+#set working directory for text file
 setwd("/Users/dan 1/Desktop/Coursera/Data Science with R/Exploratory Data Analysis with R")
 
-#Establish file type and settings for second plot creation
-png(file="Plot2.png", width=480, height=480, units="px")
+#Establish file type and settings for first plot creation
+png(file="Plot1.png", width=480, height=480, units="px")
 
 #Create a vector of column names to use for data set
 col_names <- c("Date", "Time", "Global_active_power", "Global_reactive_power", 
@@ -25,9 +25,9 @@ power$datetime <- strptime(paste(power$Date, power$Time),
 filtered <- filter(power, power$datetime >= "2007-02-01 00:00:00" 
                    & power$datetime <= "2007-02-03 00:00:00")
 
-#Creates the appropriate line chart
-with(filtered, plot(datetime, Global_active_power, xlab="", 
-                    ylab="Global Active Power", type="l"))
+#Creates histogram with 15 breaks, adds title and x-axis label
+hist(filtered$Global_active_power, col="red", breaks=15, 
+     main="Global Active Power", xlab="Global Active Power (kw)")
 
 #Turn off graphics device
 dev.off()
